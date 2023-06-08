@@ -82,3 +82,42 @@ try:
  print("\nDataFrame:")
  print(df)
  print("\n-----------------------------------------------------------------------------------------------------------------------------\n")
+
+ # a) Boş değerleri 0 ile doldurma
+ df.fillna(0, inplace=True)
+
+ # b) Gruplandırma ve ortalama hesaplama
+ print("Gruplara göre tecrube ve yeni maas ortalamalari..\n")
+ gruplanmis_df = df.groupby("nesne").agg({"tecrube": "mean", "yeni_maas": "mean"})
+ print(gruplanmis_df)
+ print("\n-----------------------------------------------------------------------------------------------------------------------------\n")
+
+ # c) Maaşı 15000TL üzerinde olanların sayısı
+ maas_15000_ustu = df[df["maas"] > 15000].shape[0]
+ print("Maaşı 15000 TL üzerinde olanların toplam sayısı:", maas_15000_ustu)
+ print("\n-----------------------------------------------------------------------------------------------------------------------------\n")
+
+ # d) Yeni maaşa göre küçükten büyüğe sıralama
+ print("Yeni maaslari kucukten buyuge siralama..\n")
+ siralama_df = df.sort_values("yeni_maas")
+ print(siralama_df)
+ print("\n-----------------------------------------------------------------------------------------------------------------------------\n")
+
+ # e) Tecrübesi 3 yildan fazla olan Beyaz yakalılar
+ print("Tecrubesi 3 yildan fazla olan beyaz yakalilar..\n")
+ tecrube_3ten_fazla = df[(df["nesne"] == "Beyaz_Yaka") & (df["tecrube"] > 3)]
+ print(tecrube_3ten_fazla)
+ print("\n-----------------------------------------------------------------------------------------------------------------------------\n")
+
+ # f) Yeni maaşı 10000 TL üzerinde olanlar için 2-5 satır arası TC ve yeni maaş sütunlarını seçme
+ print("Maasi 10000 TL den fazla olanlarin tc ve yeni maas bilgisi..\n")
+ yeni_maas_10000_ustu = df[df["yeni_maas"] > 10000].iloc[2:5, [1, -1]]
+ print(yeni_maas_10000_ustu)
+ print("\n-----------------------------------------------------------------------------------------------------------------------------\n")
+
+ # g) Ad, soyad, sektor ve yeni maaş içeren yeni DataFrame oluşturma
+ print("Yeni dataframe olusturma..\n")
+ yeni_df = df[["ad", "soyad", "sektor", "yeni_maas"]]
+ print(yeni_df)
+except Exception as e:
+ print(f"hata:{str(e)}")
