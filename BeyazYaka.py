@@ -32,3 +32,10 @@ class BeyazYaka(Calisan):
         # Hata durumunda gerekli işlemler yapılır
         except ZeroDivisionError as e:
             print("Hata: Sıfıra bölme hatası - Tecrübe değeri sıfır olamaz.")
+
+    def __str__(self):
+        # Zam hakki() yöntemi çağırılarak zam hesaplaması yapılır
+        self.zam_hakki()
+        # Üst sınıfın __str__() yöntemi çağırılır. Calisan bilgileri ve teşvik bilgisi birleştirilerek döndürülür
+        return f"{super().__str__()}, Teşvik Prim: {self.get_tesvik_primi()}"
+
