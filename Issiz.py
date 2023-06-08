@@ -44,3 +44,9 @@ class Issiz(Insan):
 
         # En uygun statü sonucu döndürülüyor
         return en_uygun_statu
+
+    def __str__(self):
+        # En uygun statü bulunuyor
+        en_uygun_statu = self.statu_bul()
+        # İnsan bilgileri ve en uygun statü birleştirilerek sonuç döndürülüyor
+        return f"{super().__str__()}, En Uygun Statü: {en_uygun_statu}"
