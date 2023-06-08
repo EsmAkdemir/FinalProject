@@ -42,3 +42,7 @@ class Insan:
 
     def set_uyruk(self, uyruk):
         self.__uyruk = uyruk
+
+    def __str__(self):
+        # Bilgiler döndürülüyor
+        return f"Ad: {self.__ad}, Soyad: {self.__soyad}"
