@@ -54,3 +54,9 @@ class Calisan(Insan):
         # Hata durumunda gerekli işlemler yapılır
         except Exception as e:
             print("Hata oluştu:", str(e))
+
+    def __str__(self):
+        # Zam hakki() yöntemi çağrılır
+        self.zam_hakki()
+        # Üst sınıfın __str__() yöntemini çağırır. İnsan bilgileri ve calisan bilgilerini birleştirerek sonucu döndürür
+        return f"{super().__str__()}, Tecrübe: {self.__tecrube}, Yeni Maaş: {self.__yeni_maas}"
