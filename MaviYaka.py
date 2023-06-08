@@ -33,3 +33,9 @@ class MaviYaka(Calisan):
         # Hata durumunda gerekli işlemler yapılır
         except ZeroDivisionError as e:
             print("Hata: Sıfıra bölme hatası - Tecrübe değeri sıfır olamaz.")
+
+    def __str__(self):
+        # Zam hakki() yöntemi çağrılır
+        self.zam_hakki()
+        # Üst sınıfın __str__() yöntemi çağrılır. Çalışan bilgileri ve yıpranma payı bilgisi birleştirilerek döndürülür
+        return f"{super().__str__()}, Yıpranma Payı: {self.get_yipranma_payi()}"
