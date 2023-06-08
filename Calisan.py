@@ -28,3 +28,29 @@ class Calisan(Insan):
         return self.__yeni_maas
     def set_yeni_maas(self, yeni_maas):
         self.__yeni_maas = yeni_maas
+
+    def zam_hakki(self):#zam hesaplama
+
+        try:
+            yeni_maas = 0
+            # Tecrübe 2-4 aralığındaysa ve maaş 15000'den küçükse
+            if self.__tecrube >= 2 and self.__tecrube <= 4 and self.__maas < 15000:
+                #zam oranını hesaplar
+                zam_orani = self.__maas % self.__tecrube
+                # Yeni maaşı günceller
+                self.__yeni_maas += (zam_orani * self.__maas / 100) + self.__maas
+            # Tecrübe 4'ten büyükse ve maaş 25000'den küçükse
+            elif self.__tecrube > 4 and self.__maas < 25000:
+                # Zam oranını hesaplar
+                zam_orani = (self.__maas % self.__tecrube) / 2
+                # Yeni maaşı günceller
+                self.__yeni_maas += (zam_orani * self.__maas / 100) + self.__maas
+            else:
+                # Diğer durumlarda zam oranını sıfıra eşitler
+                zam_orani = 0
+                # Yeni maaşı mevcut maaş değeriyle eşitler
+                self.__yeni_maas = self.__maas
+
+        # Hata durumunda gerekli işlemler yapılır
+        except Exception as e:
+            print("Hata oluştu:", str(e))
