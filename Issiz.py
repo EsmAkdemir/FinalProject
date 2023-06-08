@@ -9,3 +9,38 @@ class Issiz(Insan):
 
     def set_tecrube(self, tecrube):
         self.__tecrube = tecrube
+
+    def statu_bul(self):
+        # Her bir statüye etkisi tanımlanmış bir etkiler sözlüğü oluşturuluyor
+        etkiler = {
+            "mavi yaka": 0.2,
+            "beyaz yaka": 0.35,
+            "yönetici": 0.45
+        }
+        # En yüksek etkiye sahip olan statünün başlangıçta değerleri atanıyor
+        maks_etki = 0
+        en_uygun_statu = ""
+
+        # Tecrübe sözlüğündeki her bir statü ve yıl çifti üzerinde döngüye giriliyor
+        for statu, yil in self.__tecrube.items():
+            try:
+                # Yıl değeri bir tam sayıya dönüştürülüyor
+                yil = int(yil)
+                # Etkiler sözlüğünde statü kontrol ediliyor
+                if statu in etkiler:
+                    # Statünün etkisi hesaplanıyor
+                    etki = yil * etkiler[statu]
+
+                    # Eğer hesaplanan etki, maksimum etkiden daha büyükse, yeni en uygun statü olarak atanıyor
+                    if etki > maks_etki:
+                        maks_etki = etki
+                        en_uygun_statu = statu
+                else:
+                    # Geçersiz bir statü varsa hata mesajı döndürülüyor
+                    return "Geçersiz bir statü bulunuyor. Lütfen kontrol ediniz."
+            except ValueError:
+                # Geçersiz bir yıl değeri varsa hata mesajı döndürülüyor
+                return "Geçersiz bir yıl değeri bulunuyor. Lütfen kontrol ediniz."
+
+        # En uygun statü sonucu döndürülüyor
+        return en_uygun_statu
